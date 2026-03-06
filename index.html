@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reclaim Africa – Recover What's Yours</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --ink: #0c1a12; --forest: #1b3d28; --moss: #2e6b45; --sage: #52976a;
+  --mist: #a8d4b5; --gold: #c8961a; --gold2: #e8b83a;
+  --parchment: #f7f3ea; --white: #ffffff;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: var(--parchment); color: var(--ink); overflow-x: hidden; }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
+  background: rgba(11,25,17,0.96); backdrop-filter: blur(16px);
+}
+.logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold2); }
+.logo span { color: rgba(255,255,255,0.5); font-weight: 400; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold2); }
+.nav-btn { background: var(--gold); color: var(--ink) !important; padding: 0.45rem 1.1rem; border-radius: 3px; font-weight: 600 !important; }
+.hero {
+  min-height: 100vh; background: var(--forest);
+  display: flex; align-items: center; position: relative; overflow: hidden; padding: 7rem 5% 4rem;
+}
+.hero::before {
+  content: ''; position: absolute; top: 50%; left: 60%;
+  transform: translate(-50%,-50%); width: 800px; height: 800px; border-radius: 50%;
+  border: 1px solid rgba(200,150,26,0.08); animation: pulse 6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%,-50%) scale(1.06); opacity: 0.4; }
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center; position: relative; z-index: 2;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(200,150,26,0.12); border: 1px solid rgba(200,150,26,0.25);
+  color: var(--gold2); font-size: 0.72rem; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.8rem;
+  animation: fadeUp 0.6s 0.1s both;
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 5.5vw, 5rem); line-height: 1.05; color: #fff;
+  font-weight: 700; margin-bottom: 1.5rem; animation: fadeUp 0.6s 0.2s both;
+}
+h1 .accent { color: var(--gold2); }
+.hero-desc { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.55); margin-bottom: 2.5rem; animation: fadeUp 0.6s 0.3s both; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.4s both; }
+.btn-gold {
+  background: var(--gold); color: var(--ink); padding: 0.9rem 2rem; border-radius: 3px;
+  font-weight: 600; font-size: 0.95rem; text-decoration: none; border: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif; transition: all 0.2s; display: inline-block;
+}
+.btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
+.btn-ghost {
+  border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8);
+  padding: 0.9rem 2rem; border-radius: 3px; font-size: 0.95rem; text-decoration: none; transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: var(--gold2); color: var(--gold2); }
+.hero-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; padding: 2rem; animation: fadeUp 0.6s 0.5s both;
+}
+.card-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--mist); margin-bottom: 1.2rem; }
+.asset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.5rem; }
+.asset-pill {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px; padding: 0.6rem 0.8rem; display: flex; align-items: center;
+  gap: 0.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.65); transition: all 0.2s;
+}
+.asset-pill:hover { background: rgba(200,150,26,0.1); color: var(--gold2); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); flex-shrink: 0; }
+.dot.gold { background: var(--gold2); }
+.wl-label { font-size: 0.75rem; color: rgba(255,255,255,0.35); display: block; margin-bottom: 0.5rem; }
+.wl-row { display: flex; gap: 0.5rem; }
+.wl-row input {
+  flex: 1; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px; padding: 0.72rem 0.9rem; color: #fff; font-size: 0.85rem;
+  outline: none; font-family: 'Outfit', sans-serif; transition: border-color 0.2s;
+}
+.wl-row input:focus { border-color: var(--gold); }
+.wl-row input::placeholder { color: rgba(255,255,255,0.25); }
+.wl-row button {
+  background: var(--gold); color: var(--ink); border: none; padding: 0.72rem 1rem;
+  border-radius: 6px; font-weight: 700; cursor: pointer; font-family: 'Outfit', sans-serif; font-size: 0.85rem;
+}
+.wl-row button:hover { background: var(--gold2); }
+.ok-msg {
+  display: none; margin-top: 0.6rem; background: rgba(82,151,106,0.15);
+  border: 1px solid var(--sage); color: var(--mist); padding: 0.5rem 0.9rem;
+  border-radius: 6px; font-size: 0.8rem;
+}
+.ticker { background: var(--moss); padding: 0.9rem 0; overflow: hidden; white-space: nowrap; }
+.ticker-inner { display: inline-flex; gap: 3rem; animation: ticker 30s linear infinite; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-item { font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.65); display: inline-flex; align-items: center; gap: 0.8rem; }
+.ticker-item::before { content: '◆'; color: var(--gold2); font-size: 0.45rem; }
+section { padding: 6rem 5%; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.slabel { font-size: 0.72rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sage); margin-bottom: 0.8rem; display: block; }
+h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,4vw,3.2rem); line-height: 1.1; color: var(--ink); margin-bottom: 1rem; }
+h2 .accent { color: var(--moss); }
+.ssub { font-size: 1rem; color: #6a8a72; line-height: 1.75; max-width: 540px; margin-bottom: 3rem; }
+.assets-section { background: var(--white); }
+.big-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+.acard {
+  background: var(--parchment); border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px; padding: 1.5rem; transition: all 0.25s; position: relative; overflow: hidden;
+}
+.acard::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--moss); transform: scaleX(0); transition: transform 0.3s; transform-origin: left;
+}
+.acard:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+.acard:hover::before { transform: scaleX(1); }
+.acard .ico { font-size: 1.8rem; margin-bottom: 0.8rem; }
+.acard h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.3rem; }
+.acard p { font-size: 0.77rem; color: #7a9a82; line-height: 1.5; }
+.acard.feat { background: var(--forest); }
+.acard.feat h4 { color: var(--gold2); }
+.acard.feat p { color: rgba(255,255,255,0.45); }
+.badge {
+  display: inline-block; background: var(--gold); color: var(--ink);
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 0.18rem 0.5rem; border-radius: 3px; margin-bottom: 0.5rem;
+}
+.prob-section { background: var(--ink); }
+.prob-section h2 { color: #fff; }
+.prob-section .ssub { color: rgba(255,255,255,0.4); }
+.prob-section .slabel { color: var(--mist); }
+.prob-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.bignum { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 700; color: var(--gold2); line-height: 1; }
+.bignuml { color: rgba(255,255,255,0.45); font-size: 0.9rem; margin-bottom: 2rem; }
+.plist { list-style: none; }
+.plist li {
+  display: flex; gap: 1rem; padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.6;
+}
+.plist li:last-child { border-bottom: none; }
+.arr { color: var(--gold2); flex-shrink: 0; margin-top: 2px; }
+.how-section { background: var(--parchment); }
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+.scard {
+  background: var(--white); border-radius: 12px; padding: 2.5rem 2rem;
+  border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 2px 20px rgba(0,0,0,0.04); transition: all 0.25s;
+}
+.scard:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(27,61,40,0.12); }
+.snum {
+  width: 44px; height: 44px; border-radius: 50%; background: var(--forest); color: var(--gold2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem;
+}
+.scard h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.6rem; }
+.scard p { font-size: 0.87rem; color: #6a8a72; line-height: 1.65; }
+.cta-section {
+  background: linear-gradient(135deg, var(--forest) 0%, #0c1a12 100%);
+  text-align: center; padding: 7rem 5%;
+}
+.cta-section h2 { color: #fff; margin-bottom: 1rem; }
+.cta-section p { color: rgba(255,255,255,0.5); max-width: 460px; margin: 0 auto 2.5rem; font-size: 1rem; line-height: 1.75; }
+.cta-form { display: flex; gap: 0.8rem; max-width: 460px; margin: 0 auto 1rem; flex-wrap: wrap; justify-content: center; }
+.cta-form input {
+  flex: 1; min-width: 220px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px; padding: 1rem 1.2rem; color: #fff; font-size: 0.95rem;
+  outline: none; font-family: 'Outfit', sans-serif;
+}
+.cta-form input:focus { border-color: var(--gold); }
+.cta-form input::placeholder { color: rgba(255,255,255,0.3); }
+.cta-form button {
+  background: var(--gold); color: var(--ink); border: none; padding: 1rem 2rem;
+  border-radius: 4px; font-weight: 700; font-size: 0.95rem; cursor: pointer; font-family: 'Outfit', sans-serif;
+}
+.cta-form button:hover { background: var(--gold2); }
+.cta-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+.cta-ok { display: none; max-width: 460px; margin: 0 auto 1rem; background: rgba(82,151,106,0.15); border: 1px solid var(--sage); color: var(--mist); padding: 0.7rem 1rem; border-radius: 6px; font-size: 0.85rem; }
+footer {
+  background: #080f0b; padding: 1.8rem 5%;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.flogo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold2); }
+.flogo span { color: rgba(255,255,255,0.3); }
+footer p { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .big-grid { grid-template-columns: 1fr 1fr; }
+  .prob-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .bignum { font-size: 3.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Reclaim<span>Africa</span></div>
+  <ul class="nav-links">
+    <li><a href="#assets">What We Recover</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#waitlist" class="nav-btn">Join Waitlist</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">Pan-African Fintech Platform</div>
+      <h1>Your money is<br>waiting for you.<br><span class="accent">Go claim it.</span></h1>
+      <p class="hero-desc">Reclaim Africa is a pan-African platform that automates the recovery of unclaimed dividends, dormant bank accounts, insurance payouts, pension funds, salaries, mobile money, inheritance, government bonds, cooperative funds, investment accounts, tax refunds, and abandoned property proceeds — returning billions to their rightful African owners.</p>
+      <div class="hero-btns">
+        <a href="#waitlist" class="btn-gold">Join the Waitlist</a>
+        <a href="#assets" class="btn-ghost">See What We Recover</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="card-title">12 Asset Types We Recover</div>
+      <div class="asset-grid">
+        <div class="asset-pill"><span class="dot gold"></span>Dividends</div>
+        <div class="asset-pill"><span class="dot"></span>Bank Accounts</div>
+        <div class="asset-pill"><span class="dot"></span>Insurance</div>
+        <div class="asset-pill"><span class="dot"></span>Pensions</div>
+        <div class="asset-pill"><span class="dot"></span>Salaries</div>
+        <div class="asset-pill"><span class="dot"></span>Mobile Money</div>
+        <div class="asset-pill"><span class="dot"></span>Inheritance</div>
+        <div class="asset-pill"><span class="dot"></span>Gov. Bonds</div>
+        <div class="asset-pill"><span class="dot"></span>Co-op Funds</div>
+        <div class="asset-pill"><span class="dot"></span>Investments</div>
+        <div class="asset-pill"><span class="dot"></span>Tax Refunds</div>
+        <div class="asset-pill"><span class="dot"></span>Property</div>
+      </div>
+      <span class="wl-label">Get early access — be first when we launch</span>
+      <div class="wl-row">
+        <input type="email" id="h-email" placeholder="your@email.com">
+        <button onclick="go('h-email','h-ok')">Notify Me</button>
+      </div>
+      <div id="h-ok" class="ok-msg">✓ You're on the list!</div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Unclaimed Dividends</span><span class="ticker-item">Dormant Bank Accounts</span>
+    <span class="ticker-item">Insurance Payouts</span><span class="ticker-item">Pension Funds</span>
+    <span class="ticker-item">Unclaimed Salaries</span><span class="ticker-item">Mobile Money</span>
+    <span class="ticker-item">Inheritance Assets</span><span class="ticker-item">Government Bonds</span>
+    <span class="ticker-item">Cooperative Funds</span><span class="ticker-item">Investment Accounts</span>
+    <span class="ticker-item">Tax Refunds</span><span class="ticker-item">Property Proceeds</span>
+    <span class="ticker-item">Unclaimed Dividends</span><span class="ticker-item">Dormant Bank Accounts</span>
+    <span class="ticker-item">Insurance Payouts</span><span class="ticker-item">Pension Funds</span>
+    <span class="ticker-item">Unclaimed Salaries</span><span class="ticker-item">Mobile Money</span>
+    <span class="ticker-item">Inheritance Assets</span><span class="ticker-item">Government Bonds</span>
+    <span class="ticker-item">Cooperative Funds</span><span class="ticker-item">Investment Accounts</span>
+    <span class="ticker-item">Tax Refunds</span><span class="ticker-item">Property Proceeds</span>
+  </div>
+</div>
+
+<section class="assets-section" id="assets">
+  <div class="section-inner">
+    <span class="slabel reveal">Everything We Recover</span>
+    <h2 class="reveal">12 types of assets. <span class="accent">One platform.</span></h2>
+    <p class="ssub reveal">From unclaimed dividends to abandoned property proceeds — if Africa owes you money, Reclaim Africa will find it and bring it home.</p>
+    <div class="big-grid">
+      <div class="acard feat reveal">
+        <div class="badge">Starting Here</div>
+        <div class="ico">📈</div>
+        <h4>Unclaimed Dividends</h4>
+        <p>N242 billion sitting idle in Nigeria alone. Stock payouts never collected from listed companies.</p>
+      </div>
+      <div class="acard reveal"><div class="ico">🏦</div><h4>Dormant Bank Accounts</h4><p>Savings and current accounts inactive for years, at risk of government seizure.</p></div>
+      <div class="acard reveal"><div class="ico">🛡️</div><h4>Insurance Payouts</h4><p>Life, health, and asset policies whose beneficiaries never came forward to claim.</p></div>
+      <div class="acard reveal"><div class="ico">👴</div><h4>Pension Funds</h4><p>Retirement contributions from former employers sitting in unclaimed RSA accounts.</p></div>
+      <div class="acard reveal"><div class="ico">💼</div><h4>Unclaimed Salaries</h4><p>Wages and severance from former employers that were never collected.</p></div>
+      <div class="acard reveal"><div class="ico">📱</div><h4>Mobile Money</h4><p>Dormant MoMo, Opay, Palmpay and other mobile wallet balances gone inactive.</p></div>
+      <div class="acard reveal"><div class="ico">⚖️</div><h4>Inheritance Assets</h4><p>Financial assets from deceased relatives stuck in probate or unknown to heirs.</p></div>
+      <div class="acard reveal"><div class="ico">📜</div><h4>Government Bonds</h4><p>Federal and state savings bonds that matured but were never redeemed.</p></div>
+      <div class="acard reveal"><div class="ico">🤝</div><h4>Cooperative Funds</h4><p>Contributions to unions, thrift societies, and cooperatives left unclaimed.</p></div>
+      <div class="acard reveal"><div class="ico">📊</div><h4>Investment Accounts</h4><p>Mutual funds, stock brokerage accounts, and portfolios owners lost track of.</p></div>
+      <div class="acard reveal"><div class="ico">🧾</div><h4>Tax Refunds</h4><p>Government overpayments and tax credits approved but never returned to owners.</p></div>
+      <div class="acard reveal"><div class="ico">🏠</div><h4>Property Proceeds</h4><p>Proceeds from property sales or compulsory acquisitions never collected.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="prob-section" id="problem">
+  <div class="section-inner">
+    <div class="prob-grid">
+      <div>
+        <span class="slabel reveal">The Scale of the Problem</span>
+        <h2 class="reveal">Billions owed.<br><span style="color:var(--gold2)">Nobody looking.</span></h2>
+        <p class="ssub reveal">Most Africans don't know they're owed money. The systems that should find them are broken, manual, and inaccessible.</p>
+        <ul class="plist">
+          <li class="reveal"><span class="arr">→</span>N242 billion in unclaimed dividends in Nigeria's capital market alone</li>
+          <li class="reveal"><span class="arr">→</span>No single platform covers all 12 asset types across Africa</li>
+          <li class="reveal"><span class="arr">→</span>Most existing solutions are manual, slow, and country-specific only</li>
+          <li class="reveal"><span class="arr">→</span>Government absorbs dormant accounts with no effort to notify owners</li>
+          <li class="reveal"><span class="arr">→</span>Average dividend claim takes 3–6 months and 8+ documents</li>
+        </ul>
+      </div>
+      <div class="reveal" style="text-align:center;padding:3rem">
+        <div class="bignum">$30B+</div>
+        <div class="bignuml">in unclaimed assets across Africa</div>
+        <div class="bignum" style="font-size:3.5rem;margin-top:2rem">100M</div>
+        <div class="bignuml">potential adult beneficiaries</div>
+        <div class="bignum" style="font-size:3.5rem;margin-top:2rem">12</div>
+        <div class="bignuml">asset types on one platform</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-section" id="how">
+  <div class="section-inner">
+    <span class="slabel reveal">Simple Process</span>
+    <h2 class="reveal">From search to settlement <span class="accent">in three steps.</span></h2>
+    <p class="ssub reveal">No mountains of paperwork. No confusing portals. Just a clean guided journey from search to your bank account.</p>
+    <div class="steps">
+      <div class="scard reveal">
+        <div class="snum">1</div>
+        <h3>Search Your Name</h3>
+        <p>Enter your name, BVN, or NIN. We scan all 12 asset types simultaneously across registrars, insurers, banks, and government databases across Africa.</p>
+      </div>
+      <div class="scard reveal">
+        <div class="snum">2</div>
+        <h3>Verify Your Identity</h3>
+        <p>Complete our secure KYC process once. We generate all required documents and communicate with every institution on your behalf.</p>
+      </div>
+      <div class="scard reveal">
+        <div class="snum">3</div>
+        <h3>Receive Your Money</h3>
+        <p>Recovered funds land directly in your bank account. We charge a small success fee only when you get paid. Zero cost if we find nothing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="waitlist">
+  <span class="slabel" style="color:var(--mist);display:block;margin-bottom:0.8rem">Early Access</span>
+  <h2>Be first when we launch.</h2>
+  <p>We're onboarding early users in Nigeria first. Join the waitlist to get priority access and help shape the product.</p>
+  <div class="cta-form">
+    <input type="email" id="c-email" placeholder="Enter your email address">
+    <button onclick="go('c-email','c-ok')">Join Waitlist →</button>
+  </div>
+  <div id="c-ok" class="cta-ok">✓ You're on the list! We'll reach out when we launch.</div>
+  <p class="cta-note">No spam. Unsubscribe anytime. Built in Nigeria 🇳🇬</p>
+</section>
+
+<footer>
+  <div class="flogo">Reclaim<span>Africa</span></div>
+  <p>© 2025 Reclaim Africa. All rights reserved.</p>
+  <p style="color:rgba(255,255,255,0.4);font-size:0.82rem">📧 reclaimafrica.founder@gmail.com</p><p style="color:rgba(255,255,255,0.15);font-size:0.72rem">Delta State · Nigeria · Pan-Africa</p>
+</footer>
+
+<script>
+function go(iId, oId) {
+  var v = document.getElementById(iId).value;
+  if (!v || !v.includes('@')) { alert('Please enter a valid email.'); return; }
+  document.getElementById(iId).value = '';
+  var el = document.getElementById(oId);
+  el.style.display = 'block';
+  setTimeout(function(){ el.style.display='none'; }, 6000);
+}
+var obs = new IntersectionObserver(function(e){ e.forEach(function(x){ if(x.isIntersecting) x.target.classList.add('visible'); }); }, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){ e.preventDefault(); var t=document.querySelector(a.getAttribute('href')); if(t) t.scrollIntoView({behavior:'smooth'}); });
+});
+</script>
+</body>
+</html>
